@@ -1,2 +1,0 @@
-# Grocery
-Online Grocery Application
