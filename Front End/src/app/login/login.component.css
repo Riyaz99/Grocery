@@ -1,0 +1,33 @@
+.form-container{
+    border: 0px solid #000000;
+    padding: 50px 60px;
+    margin-top: 20vh;
+}
+.bg {
+     height: 100vh;
+     width: 100%;
+     background-position: center;
+     background-repeat: no-repeat;
+     background-size: cover;
+   }
+p{
+    color:whitesmoke;
+    text-shadow: 2px 2px black; 
+    font-weight: bold;
+    font-size: 17px;
+}
+h1{
+    color:white;
+    text-shadow: 2px 2px black;
+}
+button:hover{
+    background-color:green;
+}
+.fields {
+    color:white;
+
+}
+.text-center{
+    color:white;
+    padding-top: 200px;   
+}

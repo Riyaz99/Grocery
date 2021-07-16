@@ -1,0 +1,71 @@
+<html>  
+  <head>  
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
+  </head>  
+  <body>  
+    <form #frm="ngForm" (ngSubmit)="addUser();frm.reset();">  
+      <div class="container">  
+        <h1>  Registration </h1> 
+        <hr>  
+          <div class="alert alert-success" *ngIf="msg !=undefined"> {{msg}}</div>
+          <div class="alert alert-danger" *ngIf="errorMsg!=undefined"> Email already exists</div> 
+
+          <label> Firstname </label><br>  
+          <input class="abc" type="text" name="firstname" [(ngModel)]="user.firstName" #mlfirstname="ngModel" placeholder= "Firstname" [pattern]="firstname_pattern" required /> <br><br>  
+          <div class="alert alert-danger" *ngIf="!mlfirstname.value && mlfirstname.touched"> Firstname is required</div>  
+          <div class="alert alert-danger" *ngIf="mlfirstname.invalid && mlfirstname.touched"> Firstname should contain alphabets only</div>  
+          
+          <label> Lastname </label><br>  
+          <input class="abc" type="text" name="lastname" [(ngModel)]="user.lastName" #mllastname="ngModel" placeholder="Lastname" [pattern]="lastname_pattern" required /> <br><br>   
+          <div class="alert alert-danger" *ngIf="!mllastname.value && mllastname.touched"> Lastname is required</div>   
+          <div class="alert alert-danger" *ngIf="mllastname.invalid && mllastname.touched"> Lastname should contain alphabets only</div>   
+
+          <label>Phone </label>  <br>    
+          <input class="abc" type="text" name="phone" [(ngModel)]="user.mobileNo" #mlphone="ngModel" placeholder="phone no." [pattern]="phone_pattern" required> <br><br>    
+          <div class="alert alert-danger" *ngIf="!mlphone.value && mlphone.touched"> Phone number is required</div>   
+          <div class="alert alert-danger" *ngIf="mlphone.invalid && mlphone.touched"> Phone number should start with 6-9 having 10 digits</div>   
+          
+          <b>Current Address  </b> <br> 
+          <textarea class="abc" cols="80" rows="5" name="address" [(ngModel)]="user.address" #mladdress="ngModel" placeholder="Current Address" value="address" required></textarea><br><br>  
+          <div class="alert alert-danger" *ngIf="mladdress.invalid && mladdress.touched"> Address is required</div>   
+          
+          <b>Country </b> <br> 
+          <input class="abc" type="text" name="country" [(ngModel)]="user.country" #mlcountry="ngModel" placeholder="Country" [pattern]="country_pattern" required><br><br>
+          <div class="alert alert-danger" *ngIf="!mlcountry.value && mlcountry.touched"> Country is required</div>   
+          <div class="alert alert-danger" *ngIf="mlcountry.invalid && mlcountry.touched"> Country can only contain alphabets</div>   
+
+          <b>State </b><br> 
+          <input class="abc" type="text" name="state" [(ngModel)]="user.state" #mlstate="ngModel" placeholder="State" [pattern]="state_pattern" required><br><br>
+          <div class="alert alert-danger" *ngIf="!mlstate.value && mlstate.touched"> State is required</div>   
+          <div class="alert alert-danger" *ngIf="mlstate.invalid && mlstate.touched"> State can only contain alphabets</div>   
+
+          <b>Pincode </b> <br> 
+          <input class="abc" type="text" name="pincode" [(ngModel)]="user.pincode" #mlpincode="ngModel" placeholder="Pincode" [pattern]="pincode_pattern" required><br><br>
+          <div class="alert alert-danger" *ngIf="!mlpincode.value && mlpincode.touched"> Pincode is required</div>   
+          <div class="alert alert-danger" *ngIf="mlpincode.invalid && mlpincode.touched"> Pincode can only contain numerics starting from 1-9 with 6 digits</div>   
+
+          <b>District </b> <br> 
+          <input class="abc" type="text" name="district" [(ngModel)]="user.district" #mldistrict="ngModel" placeholder="District" [pattern]="district_pattern" required><br><br>
+          <div class="alert alert-danger" *ngIf="!mldistrict.value && mldistrict.touched"> District is required</div>   
+          <div class="alert alert-danger" *ngIf="mldistrict.invalid && mldistrict.touched"> District can only contain alphabets</div>   
+
+          <label for="email"><b>Email</b></label>  <br>  
+          <input class="abc" type="text" placeholder="Enter Email" name="email" [(ngModel)]="user.emailId" #mlemail="ngModel" [pattern]="email_pattern" required>  <br>  <br>  
+          <div class="alert alert-danger" *ngIf="!mlemail.value && mlemail.touched"> Email is required</div>    
+          <div class="alert alert-danger" *ngIf="mlemail.invalid && mlemail.touched"> Email should follow valid pattern example:"hello@xyz.com"</div>     
+
+          <label for="psw"><b>Password</b></label><br>  
+          <input class="abc" type="password" placeholder="Enter Password" name="password" [(ngModel)]="user.password" #mlpassword="ngModel" [pattern]="password_pattern" required>  <br>  <br>   
+          <div class="alert alert-danger" *ngIf="!mlpassword.value && mlpassword.touched"> Password is required</div>    
+          <div class="alert alert-danger" *ngIf="mlpassword.invalid && mlpassword.touched"> Password should contain atleast one special characters like @,#,$,%</div>    
+
+          <label for="psw-repeat"><b>Confirm Password</b></label>  <br>  
+          <input class="abc" type="password" placeholder="Confirm Password" name="confirmpassword" [(ngModel)]="user.confirmpassword" #mlconfirmpassword="ngModel" [pattern]="password_pattern" required> <br><br>
+          <div class="alert alert-danger" *ngIf="!mlconfirmpassword.value && mlconfirmpassword.touched"> Confirm Password is required</div>    
+          <div class="alert alert-danger" *ngIf="mlconfirmpassword.value!=mlpassword.value && mlconfirmpassword.touched"> Password does not match</div>    
+          <div class="mt-2 text-center"><input type="submit" value="Register" [disabled]="!frm.valid || mlconfirmpassword.value!=mlpassword.value" class="btn btn-primary btn-lg"/> </div>
+          <p>Already have an account? <a routerLink="/login">Login Here</a></p>
+      </div>  
+    </form>  
+  </body>  
+</html>  

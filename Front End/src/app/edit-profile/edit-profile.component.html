@@ -1,0 +1,104 @@
+<div class="alert alert-success" *ngIf="msg !=undefined"> Profile Updated Successfully</div>
+<div  *ngIf="!updateDiv">
+<Div class="mt-2 text-center" ><H1 >Edit Profile</H1> </Div>
+<table class="table table-primary table-striped table-hover col-md-8 mx-auto mt-3" border="1">
+    <tr>
+        <th>Email ID</th>
+        <td>{{user.emailId}}</td>
+    </tr>
+    <tr>
+        <th>First Name</th>
+        <td>{{user.firstName}}</td>
+    </tr>
+    <tr>
+        <th>Last Name</th>
+        <td>{{user.lastName}}</td>
+    </tr>
+    <tr>
+        <th>Mobile No</th>
+        <td>{{user.mobileNo}}</td>
+    </tr>
+    <tr>
+        <th>Address</th>
+        <td>{{user.address}}</td>
+    </tr>
+    <tr>
+        <th>Country</th>
+        <td>{{user.country}}</td>
+    </tr>
+    <tr>
+        <th>State</th>
+        <td>{{user.state}}</td>
+    </tr>
+    <tr>
+        <th>District</th>
+        <td>{{user.district}}</td>
+    </tr>
+    <tr>
+        <th>Pincode</th>
+        <td>{{user.pincode}}</td>
+    </tr>
+    <tr>
+        <td>
+            <button type="submit" (click)="update(user)" value="Update" class="btn btn-success">Update</button>
+        </td>
+    </tr>
+</table>
+</div>
+<div *ngIf="updateDiv"> 
+    <Div class="mt-2 text-center" ><H1>Update Profile</H1> </Div>
+    <form #frm="ngForm" (ngSubmit)="updateUser()">  
+        <div class="container">    
+            <div class="alert alert-success" *ngIf="msg !=undefined"> Registration Successful</div>
+            <div class="alert alert-danger" *ngIf="errorMsg!=undefined"> Email already exists</div> 
+  
+            <label> Firstname </label><br>  
+            <input type="text" name="firstname" [(ngModel)]="user.firstName" #mlfirstname="ngModel" placeholder= "Firstname" [pattern]="firstname_pattern" required disabled/> <br><br>  
+            <div class="alert alert-danger" *ngIf="!mlfirstname.value && mlfirstname.touched"> Firstname is required</div>  
+            <div class="alert alert-danger" *ngIf="mlfirstname.invalid && mlfirstname.touched"> Firstname should contain alphabets only</div>  
+            
+            <label> Lastname </label><br>  
+            <input type="text" name="lastname" [(ngModel)]="user.lastName" #mllastname="ngModel" placeholder="Lastname" [pattern]="lastname_pattern" required disabled/> <br><br>   
+            <div class="alert alert-danger" *ngIf="!mllastname.value && mllastname.touched"> Lastname is required</div>   
+            <div class="alert alert-danger" *ngIf="mllastname.invalid && mllastname.touched"> Lastname should contain alphabets only</div>   
+  
+            <label>Phone </label>  <br>    
+            <input type="text" name="phone" [(ngModel)]="user.mobileNo" #mlphone="ngModel" placeholder="phone no." [pattern]="phone_pattern" required> <br><br>    
+            <div class="alert alert-danger" *ngIf="!mlphone.value && mlphone.touched"> Phone number is required</div>   
+            <div class="alert alert-danger" *ngIf="mlphone.invalid && mlphone.touched"> Phone number should start with 6-9 having 10 digits</div>   
+            
+            <b>Current Address  </b> <br> 
+            <textarea cols="80" rows="5" name="address" [(ngModel)]="user.address" #mladdress="ngModel" placeholder="Current Address" value="address" required></textarea><br><br>  
+            <div class="alert alert-danger" *ngIf="mladdress.invalid && mladdress.touched"> Address is required</div>   
+            
+            <b>Country </b> <br> 
+            <input type="text" name="country" [(ngModel)]="user.country" #mlcountry="ngModel" placeholder="Country" [pattern]="country_pattern" required><br><br>
+            <div class="alert alert-danger" *ngIf="!mlcountry.value && mlcountry.touched"> Country is required</div>   
+            <div class="alert alert-danger" *ngIf="mlcountry.invalid && mlcountry.touched"> Country can only contain alphabets</div>   
+  
+            <b>State </b><br> 
+            <input type="text" name="state" [(ngModel)]="user.state" #mlstate="ngModel" placeholder="State" [pattern]="state_pattern" required><br><br>
+            <div class="alert alert-danger" *ngIf="!mlstate.value && mlstate.touched"> State is required</div>   
+            <div class="alert alert-danger" *ngIf="mlstate.invalid && mlstate.touched"> State can only contain alphabets</div>   
+  
+            <b>Pincode </b> <br> 
+            <input type="text" name="pincode" [(ngModel)]="user.pincode" #mlpincode="ngModel" placeholder="Pincode" [pattern]="pincode_pattern" required><br><br>
+            <div class="alert alert-danger" *ngIf="!mlpincode.value && mlpincode.touched"> Pincode is required</div>   
+            <div class="alert alert-danger" *ngIf="mlpincode.invalid && mlpincode.touched"> Pincode can only contain numerics starting from 1-9 with 6 digits</div>   
+  
+            <b>District </b> <br> 
+            <input type="text" name="district" [(ngModel)]="user.district" #mldistrict="ngModel" placeholder="District" [pattern]="district_pattern" required><br><br>
+            <div class="alert alert-danger" *ngIf="!mldistrict.value && mldistrict.touched"> District is required</div>   
+            <div class="alert alert-danger" *ngIf="mldistrict.invalid && mldistrict.touched"> District can only contain alphabets</div>   
+  
+            <label for="email"><b>Email</b></label>  <br>  
+            <input type="text" placeholder="Enter Email" name="email" [(ngModel)]="user.emailId" #mlemail="ngModel" [pattern]="email_pattern" required disabled>  <br>  <br>  
+            <div class="alert alert-danger" *ngIf="!mlemail.value && mlemail.touched"> Email is required</div>    
+            <div class="alert alert-danger" *ngIf="mlemail.invalid && mlemail.touched"> Email should follow valid pattern example:"hello@xyz.com"</div>     
+        
+            <div class="mt-2 text-center">
+                <input type="submit" value="Update Profile" [disabled]="!frm.valid" class="btn btn-success" [disabled]="!frm.valid"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" (click)="cancel()" value="Cancel" class="btn btn-danger">Cancel</button>
+            </div>
+        </div>
+    </form>
